@@ -8,23 +8,24 @@ class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
 
         res = []
-        if not root:
+        if not root: #if empty 
             return []
+
+        #start of BFS
         q = deque()
         q.append(root)
         while q:
-            qlen = len(q)
-            lvl = []
-            for i in range(qlen):
-                e = q.popleft()
-                if e:
-                    lvl.append(e.val)
-                    if e.left:
-                        q.append(e.left)
-                    if e.right:
-                        q.append(e.right)
+            qlen = len(q) #how many items are in the Q
+            lvl = [] 
 
-            res.append(lvl)
+            for i in range(qlen): #Run for the amount of items in Q. This is the level
+                e = q.popleft()
+                if e:  #if node is not null
+                    lvl.append(e.val)
+                    q.append(e.left)
+                    q.append(e.right)
+            if(lvl): #not empty
+                res.append(lvl)
 
 
         return res
