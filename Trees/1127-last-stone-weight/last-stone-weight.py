@@ -14,7 +14,7 @@ class Solution:
             newStone = y - x
             heapq.heappush(stones, -1*newStone)
             
-        if not stones:
-            return 0
-        return -1*stones[0]
+        # if not stones:
+        #     return 0
+        return -1*stones[0] if stones else 0
         
