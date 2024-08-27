@@ -21,8 +21,17 @@ class Solution:
             path.remove((r,c))
             return res
 
+        # for r in range(rows):
+        #     for c in range(cols):
+        #         if dfs(r,c,0):
+        #             return True
+        # return False
+        count = defaultdict(int, sum(map(Counter, board), Counter()))
+        if count[word[0]] > count[word[-1]]:
+            word = word[::-1]
+            
         for r in range(rows):
             for c in range(cols):
-                if dfs(r,c,0):
+                if dfs(r, c, 0):
                     return True
         return False
