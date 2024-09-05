@@ -13,7 +13,7 @@ class Solution:
 
         res = []
         def backtrack(i, currStr):
-            if len(currStr) == len(digits):
+            if i == len(digits):
                 res.append(currStr)
                 return
 
