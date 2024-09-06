@@ -20,7 +20,6 @@ class Solution:
                 # for j in range(-1,2):
                 #     if j != 0 and c + j >= 0 and c + j < COLS:
                 #         adj.append((r, c+j))
-
                 # for nr, nc in adj:
                 #     if grid[nr][nc] != 0 and (nr, nc) not in visited:
                 #         q.append((nr, nc))
@@ -31,7 +30,8 @@ class Solution:
                 for dr, dc in directions:
                     nr, nc = r + dr, c + dc
                     if (0 <= nr < ROWS and 0 <= nc < COLS and 
-                        grid[nr][nc] == 1 and (nr, nc) not in visited):
+                        grid[nr][nc] == 1 and 
+                        (nr, nc) not in visited):
                         q.append((nr, nc))
                         visited.add((nr, nc))
                         islandSize += 1
