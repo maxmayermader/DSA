@@ -10,22 +10,33 @@ class Solution:
             q.append(start)
             visited.add(start)
             while q:
-                curr = q.popleft()
-                adj= []
-                for i in range(-1,2):
-                    if i != 0:
-                        if curr[0]+i >= 0 and curr[0]+i < ROWS:
-                            adj.append((curr[0]+i,curr[1]))
+                # curr = q.popleft()
+                # adj= []
+                # for i in range(-1,2):
+                #     if i != 0:
+                #         if curr[0]+i >= 0 and curr[0]+i < ROWS:
+                #             adj.append((curr[0]+i,curr[1]))
 
-                for j in range(-1,2):
-                    if j != 0:
-                        if  curr[1]+j >= 0 and curr[1]+j < COLS:
-                            adj.append((curr[0],curr[1]+j))
+                # for j in range(-1,2):
+                #     if j != 0:
+                #         if  curr[1]+j >= 0 and curr[1]+j < COLS:
+                #             adj.append((curr[0],curr[1]+j))
 
-                for cord in adj:
-                    if cord not in visited and grid[cord[0]][cord[1]] != "0":
-                        q.append(cord)
-                        visited.add(cord)
+                # for cord in adj:
+                #     if cord not in visited and grid[cord[0]][cord[1]] != "0":
+                #         q.append(cord)
+                #         visited.add(cord)
+                row,col = q.popleft()
+                directions= [[1,0],[-1,0],[0,1],[0,-1]]
+            
+                for dr,dc in directions:
+                    r,c = row + dr, col + dc
+                    if (r) in range(ROWS) and (c) in range(COLS) and grid[r][c] == '1' and (r ,c) not in visited:
+                    
+                        q.append((r , c ))
+                        visited.add((r, c ))
+
+                
 
 
             
