@@ -28,4 +28,4 @@ class Solution:
 
             time +=1
 
-        return time if fresh <= 0 else -1
+        return time if fresh == 0 else -1
