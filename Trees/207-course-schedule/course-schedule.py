@@ -25,7 +25,8 @@ class Solution:
             return True
 
         for crs in range(numCourses):
-            if not dfs(crs): return False
+            if preMap[crs] != []:
+                if not dfs(crs): return False
         return True
 
         
