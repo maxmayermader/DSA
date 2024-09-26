@@ -19,7 +19,7 @@ class Solution:
         visit = set()
         t = 0
 
-        while len(visit) < N:
+        while pq and len(visit) < N:
             cost, point = heapq.heappop(pq)
 
             if point in visit:
