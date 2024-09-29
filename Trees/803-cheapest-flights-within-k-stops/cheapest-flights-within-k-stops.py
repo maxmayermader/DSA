@@ -1,24 +1,17 @@
 class Solution:
     def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, k: int) -> int:
-        adj = {i:[] for i in range(n)}
-        for node, nei, cost in flights:
-            adj[node].append((cost, nei))
+        costs = [float('inf')]*n
+        costs[src] = 0
 
-        pq = [(0, src, k+1)]
-        visit = {}
-        # totStops = k
+        for i in range(k+1):
+            tempCosts = costs.copy()
 
-        while pq:
-            cost, node, stops = heapq.heappop(pq)
+            for start, end, cost in flights:
+                if costs[start] == float('inf'):
+                    continue
+                if costs[start] + cost < tempCosts[end]:
+                    tempCosts[end] = costs[start] + cost
 
-            if node == dst:
-                return cost
+            costs =  tempCosts
 
-            if stops > 0:
-                if node not in visit or visit[node] < stops:
-                    visit[node] = stops
-                    for neiCost, nei in adj[node]:
-                        heapq.heappush(pq, (cost+neiCost, nei, stops-1))
-
-        return -1
-
+        return -1 if costs[dst] == float("inf") else costs[dst]
