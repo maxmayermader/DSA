@@ -1,24 +1,26 @@
 class Solution:
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
-        if not nums or k == 0:
-            return []
+        output = []
+        q = collections.deque()  # Deque to store indices of potential maximum elements
+        l = r = 0  # Left and right pointers of the sliding window
         
-        result = []
-        window = deque()
+        # Iterate through the array
+        while r < len(nums):
+            # Remove smaller elements from the back of the deque
+            # This maintains the deque in decreasing order of element values
+            while q and nums[q[-1]] < nums[r]:
+                q.pop()
+            q.append(r)  # Add current index to the deque
+            
+            # Remove the leftmost element if it's outside the current window
+            if l > q[0]:
+                q.popleft()
+            
+            # If we have a full window, add the maximum to the output
+            if (r + 1) >= k:
+                output.append(nums[q[0]])  # The front of the deque always has the maximum
+                l += 1  # Move the left pointer of the window
+            
+            r += 1  # Move the right pointer of the window
         
-        for i in range(len(nums)):
-            # Remove indices that are out of the current window
-            if window and window[0] == i - k:
-                window.popleft()
-            
-            # Remove all indices with smaller values than the current element
-            while window and nums[window[-1]] < nums[i]:
-                window.pop()
-            
-            window.append(i)
-            
-            # Start adding to result when we have our first k-sized window
-            if i >= k - 1:
-                result.append(nums[window[0]])
-        
-        return result
+        return output
