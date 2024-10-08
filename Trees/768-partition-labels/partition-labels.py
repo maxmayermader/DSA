@@ -5,12 +5,12 @@ class Solution:
             hm[c] = i
 
         res = []
-        end = hm[s[0]]
+        end = 0
         size = 0
         for i in range(len(s)):
-            
             end = max(end, hm[s[i]])
             size+=1
+
             if i == end:
                 res.append(size)
                 size = 0
