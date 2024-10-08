@@ -13,6 +13,7 @@ class Solution:
                 leftMin -= 1
                 rightMax += 1
             if rightMax < 0:
+                r = 0
                 return False
             if leftMin < 0:
                 leftMin = 0
