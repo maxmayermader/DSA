@@ -10,5 +10,4 @@ class Solution:
                 if v == target[i]:
                     good.add(i)
 
-
         return len(good) == 3
