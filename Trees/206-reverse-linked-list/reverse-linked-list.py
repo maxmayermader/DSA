@@ -10,8 +10,6 @@ class Solution:
             temp = head.next
             head.next = prev
             prev = head
-            if not temp:
-                break
             head = temp
 
-        return head 
+        return prev 
