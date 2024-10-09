@@ -2,6 +2,8 @@ class Solution:
     def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
         q = deque()
         prev = image[sr][sc]
+        if prev == color:
+            return image
         q.append((sr, sc))
         visit = set()
         # visit.add((sr, sc))
