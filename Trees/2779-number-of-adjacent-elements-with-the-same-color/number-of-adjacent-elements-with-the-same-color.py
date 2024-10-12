@@ -19,19 +19,18 @@ class Solution:
         colors = n*[0]
         answer = []
         curanswer = 0
-        for query in queries:
-            index = query[0]
+        for index, c in queries:
             oldcolor = colors[index]
-            colors[index] = query[1]
+            colors[index] = c
             if index > 0:
                 if(colors[index-1] == oldcolor and oldcolor != 0):
                     curanswer -= 1
-                if(colors[index-1] == query[1]):
+                if(colors[index-1] == c):
                     curanswer += 1
             if index < n-1:
                 if(colors[index+1] == oldcolor and oldcolor != 0):
                     curanswer -= 1
-                if(colors[index+1] == query[1]):
+                if(colors[index+1] == c):
                     curanswer += 1
             answer.append(curanswer)
         return answer
