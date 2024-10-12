@@ -16,15 +16,22 @@
 
 class Solution:
     def colorTheArray(self, n: int, queries: List[List[int]]) -> List[int]:
-
-        ans, d, cnt = [], defaultdict(int), 0
-
-        for i, color in queries:
-
-            if d[i]: cnt-= (d[i-1] == d[i])+(d[i+1] == d[i])
-            d[i] = color
-            if d[i]: cnt+= (d[i-1] == d[i])+(d[i+1] == d[i])
-
-            ans.append(cnt)
-
-        return ans
+        colors = n*[0]
+        answer = []
+        curanswer = 0
+        for query in queries:
+            index = query[0]
+            oldcolor = colors[index]
+            colors[index] = query[1]
+            if index > 0:
+                if(colors[index-1] == oldcolor and oldcolor != 0):
+                    curanswer -= 1
+                if(colors[index-1] == query[1]):
+                    curanswer += 1
+            if index < n-1:
+                if(colors[index+1] == oldcolor and oldcolor != 0):
+                    curanswer -= 1
+                if(colors[index+1] == query[1]):
+                    curanswer += 1
+            answer.append(curanswer)
+        return answer
