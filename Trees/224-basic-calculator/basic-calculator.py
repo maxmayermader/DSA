@@ -6,6 +6,8 @@ class Solution:
         operations_stack = []
 
         for c in s:
+            if c == ' ':
+                continue
             if c.isdigit():
                 number = number * 10 + int(c)
             elif c in "+-":
