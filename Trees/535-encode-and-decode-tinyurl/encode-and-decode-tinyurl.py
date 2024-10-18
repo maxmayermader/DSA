@@ -1,7 +1,7 @@
 class Codec:
     def __init__(self):
         self.urls = {}
-        self.urlNum = 0
+ 
         self.base = "http://tinyurl.com/"
 
 
@@ -9,9 +9,9 @@ class Codec:
         """Encodes a URL to a shortened URL.
         """
         # newUrl = "http://tinyurl.com/"+str(self.urlNum)
-        newUrl = self.base+str(self.urlNum)
+        newUrl = self.base+str(len(longUrl))
         self.urls[newUrl] = longUrl
-        self.urlNum+=1
+        # self.urlNum+=1
         return newUrl
 
         
