@@ -1,5 +1,6 @@
 class Solution:
     def findMin(self, nums: List[int]) -> int:
+        return min(nums)
         l, r = 0, len(nums)-1
         minNum = float('inf')
         while l <= r:
@@ -10,17 +11,6 @@ class Solution:
             else:
                 r = m - 1
         return min(minNum, nums[0])
-
-
-
-
-
-
-
-
-
-
-
 
         # def binSearch(l, r):
         #     m = (r + l) // 2
