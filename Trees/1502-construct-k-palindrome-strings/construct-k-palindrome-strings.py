@@ -7,6 +7,8 @@ class Solution:
         # for a string to be palindrome all charecters must have an even count and at most one charecter can have an odd count
         if  len(s) < k: # cannot have string longer than k. k=3 aa "a"+"a"+" " is invalid
             return False
+        if len(s) == k: # we can have k palindromes
+            return True
         freq = Counter(s)
         oddCnt = 0 #count odds
         for key in freq:
