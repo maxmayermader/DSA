@@ -5,5 +5,5 @@ class Solution:
         freq = Counter(s)
         oddCnt = 0 #count odds
         for key in freq:
-            oddCnt += 1 if freq[key] %2 != 0 else 0
+            oddCnt += freq[key] %2
         return oddCnt <= k
