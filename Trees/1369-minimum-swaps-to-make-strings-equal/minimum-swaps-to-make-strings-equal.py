@@ -13,8 +13,8 @@ class Solution:
         # Both x_y and y_x count shall either be even or odd to get the result.
 		# x_y + y_x should be even
         
-        res = x_y // 2
-        res += y_x // 2
+        res = x_y // 2 + y_x // 2
+        # res += y_x // 2
         
         if x_y % 2 == 1:
             res += 2
