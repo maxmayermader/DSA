@@ -22,5 +22,7 @@ class Solution:
                 dfs(i+1, nums)
                 nums = nums[0:-1]
 
+        if not digits:
+            return []
         dfs(0, "")
-        return res if res != [""] else []
+        return res 
