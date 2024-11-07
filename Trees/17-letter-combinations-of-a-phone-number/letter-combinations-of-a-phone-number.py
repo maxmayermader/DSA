@@ -12,15 +12,15 @@ class Solution:
         }
 
         res = []
-        def backtrack(i, currStr):
+        def dfs(i, nums):
             if i == len(digits):
-                res.append(currStr)
+                res.append(nums)
                 return
-
+            
             for c in phone[digits[i]]:
-                backtrack(i+1, currStr+c)
+                nums += c
+                dfs(i+1, nums)
+                nums = nums[0:-1]
 
-        if digits:
-           backtrack(0,"")    
-
-        return res
+        dfs(0, "")
+        return res if res != [""] else []
