@@ -1,24 +1,17 @@
 class Solution:
     def canPartition(self, nums: List[int]) -> bool:
         total = sum(nums)
-        if total % 2:
+        if total % 2:  # If sum is odd, partition impossible
             return False
         
         target = total // 2
-        cache = {}
+        dp = set([0])  # Set of all possible sums
         
-        def dfs(i, currSum):
-            if i >= len(nums) or currSum > target:
-                return currSum == target
-                
-            if (i, currSum) in cache:
-                return cache[(i, currSum)]
-                
-            cache[(i, currSum)] = (
-                dfs(i + 1, currSum) or 
-                dfs(i + 1, currSum + nums[i])
-            )
-            return cache[(i, currSum)]
-        
-        return dfs(0, 0)
+        for num in nums:
+            next_dp = dp.copy()  # Create new set to avoid modifying during iteration
+            for t in dp:
+                next_dp.add(t + num)
+            dp = next_dp
+            
+        return target in dp
         
