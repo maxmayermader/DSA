@@ -13,6 +13,4 @@ class Solution:
                         else:
                             dp[(newr, newc)] =  dp.get((r,c), 0)
 
-
         return dp[(0,0)]
-        
