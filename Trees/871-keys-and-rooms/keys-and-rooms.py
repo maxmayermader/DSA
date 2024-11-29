@@ -1,13 +1,26 @@
 class Solution:
     def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
-        visit = set()
-        def dfs(cur):
-            if cur in visit:
-                return 
+        n = len(rooms)
+        # in_edges = [0]* n
+        visited = set()
+        visited.add(0)
 
-            visit.add(cur)
-            for nei in rooms[cur]:
-                dfs(nei)
+        # for keys in rooms:
+        #     for key in keys:
+        #         in_edges[key] += 1
 
-        dfs(0)
-        return len(visit) == len(rooms)
+        q = collections.deque()
+
+        q.append(0)
+
+        while q:
+            can_visit = q.popleft()
+        
+            for room in rooms[can_visit]:
+                if room not in visited:
+                    visited.add(room)
+                    # in_edges[room] -= 1
+                    q.append(room)
+        
+        print(visited)
+        return True if len(visited) == n else False
