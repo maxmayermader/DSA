@@ -1,26 +1,25 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        if not prices:
-            return 0
-            
         n = len(prices)
-        # Initialize dp array properly for each day and state
         dp = [[0] * 2 for _ in range(n + 1)]
         
-        # Iterate backwards through the prices
-        for cur in range(n - 1, -1, -1):
-            # State 0: Not holding stock
-            dp[cur][0] = max(
-                dp[cur + 1][1] - prices[cur],  # Buy
-                dp[cur + 1][0]                 # Skip
+        # Base case: when we reach the end
+        dp[n][0] = dp[n][1] = 0
+        
+        # Iterate backwards through the array
+        for i in range(n - 1, -1, -1):
+            # Not holding a stock
+            dp[i][0] = max(
+                dp[i + 1][1] - prices[i],  # buy
+                dp[i + 1][0]               # skip
             )
             
-            # State 1: Holding stock
-            dp[cur][1] = max(
-                dp[cur + 1][0] + prices[cur],  # Sell
-                dp[cur + 1][1]                 # Skip
+            # Holding a stock
+            dp[i][1] = max(
+                dp[i + 1][0] + prices[i],  # sell
+                dp[i + 1][1]               # skip
             )
-            
+        
         return dp[0][0]
         
 
