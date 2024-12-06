@@ -1,23 +1,27 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        
-        dp = [[-float('inf')]*2]*len(prices)
-        
-        @lru_cache(maxsize=None)
-        def dfs(cur, hold):
-            if cur == len(prices):
-                return 0
+        if not prices:
+            return 0
             
-            ch1, ch2 = 0, 0
-            if hold is 1:
-                ch1 = dfs(cur+1, 0) + prices[cur]
-                ch2 = dfs(cur+1, 1)
-            else:
-                ch1 = dfs(cur+1, 1) - prices[cur]
-                ch2 = dfs(cur+1, 0)
-            return max(ch1, ch2)
-
-        return dfs(0, 0)
+        n = len(prices)
+        # Initialize dp array properly for each day and state
+        dp = [[0] * 2 for _ in range(n + 1)]
+        
+        # Iterate backwards through the prices
+        for cur in range(n - 1, -1, -1):
+            # State 0: Not holding stock
+            dp[cur][0] = max(
+                dp[cur + 1][1] - prices[cur],  # Buy
+                dp[cur + 1][0]                 # Skip
+            )
+            
+            # State 1: Holding stock
+            dp[cur][1] = max(
+                dp[cur + 1][0] + prices[cur],  # Sell
+                dp[cur + 1][1]                 # Skip
+            )
+            
+        return dp[0][0]
         
 
 """
